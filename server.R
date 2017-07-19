@@ -42,13 +42,15 @@ makeRectangles <- function(x) {
 }
 
 
+
+
 shinyServer(function(input, output) {
 
   output$distPlot <- renderPlot({
-
+    x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
     # generate bins based on input$bins from ui.R
     plot.new()
-    makeRectangles(c(0.1))
+    makeRectangles(x$sum.stat)
   })
 
 })
