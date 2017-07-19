@@ -47,7 +47,7 @@ makeRectangles <- function(x) {
 shinyServer(function(input, output) {
 
   output$distPlot <- renderPlot({
-    x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
+    x <- whatif(data = peacef, cfact = peacef[1:input$cfacts,])
     # generate bins based on input$bins from ui.R
     plot.new()
     makeRectangles(x$sum.stat)

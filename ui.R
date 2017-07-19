@@ -18,7 +18,7 @@ shinyUI(fluidPage(
       sliderInput("cfacts",
                   "Number of Counterfactuals:",
                   min = 1,
-                  max = 122,
+                  max = 124,
                   value = 30)
     ),
     
