@@ -10,11 +10,15 @@ library(WhatIf)
 data("peacecf")
 data("peacef")
 
-val2col <- function(val) {
-  if (val < 0.1) {
-    return(rgb(1,val/0.1,0))
-  } else if (val >= 0.1 && val < 0.2) {
-    return(rgb(1-((val-0.1)/0.1),1,0))
+
+# function for converting percentage nearby value into color
+# color ranges from red through yellow to green.
+# nearby is the value representing a decent data nearby percentage
+val2col <- function(val, nearby = 0.1) {
+  if (val < nearby) {
+    return(rgb(1,val/nearby,0))
+  } else if (val >= nearby && val < (2*nearby)) {
+    return(rgb(1-((val-nearby)/nearby),1,0))
   } else {
     return(rgb(0,1,0))
   }
