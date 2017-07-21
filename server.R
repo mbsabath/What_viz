@@ -15,19 +15,19 @@ data("peacef")
 # color ranges from red through yellow to green.
 # nearby is the value representing a decent data nearby percentage
 source("utils.R")
-source("setup.R")
+
 
 
 
 shinyServer(function(input, output) {
-
+  ##Values <- reactiveValues( x = whatif(data = peacef, cfact = peacecf[1:input$cfacts,]))
   output$distPlot <- renderPlot({
     x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
-    # generate bins based on input$bins from ui.R
-    plot.new()
-    makeRectangles(x$sum.stat)
+    makeGraphic(x)
   })
   
-  ##output$text <- renderText({summary(x)})
+  output$linePlot <- renderPlot({
+    x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
+    plot(x)})
 
 })

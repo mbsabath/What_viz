@@ -24,8 +24,13 @@ shinyUI(fluidPage(
     
 
     # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
+    tabsetPanel(
+      tabPanel("Heatmap", fluidRow(
+        plotOutput("distPlot")
+        )),
+      tabPanel("Line Graph", fluidRow(
+        plotOutput("linePlot")
+      ))
     )
   )
 ))
