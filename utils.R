@@ -49,6 +49,9 @@ WhatifHeatMap <- function(what_out) {
   return(out)
 }
 
+
+## Code to output the graphic of whether or not the cfacts are in
+# the convex hull
 inHullMap <- function(what_out) {
   data <- data.frame(1:length(what_out$in.hull))
   data$in.hull <- what_out$in.hull
