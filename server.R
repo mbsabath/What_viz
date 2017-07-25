@@ -11,6 +11,7 @@ data("peacecf")
 data("peacef")
 names(peacecf)[8] <- "untype4"
 myData <- rbind(peacecf, peacef)
+set.seed(1234)
 myData <- myData[sample(nrow(myData)),]
 
 

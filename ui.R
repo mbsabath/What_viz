@@ -19,7 +19,7 @@ shinyUI(fluidPage(
                   "Number of Counterfactuals:",
                   min = 1,
                   max = 246,
-                  value = 30)
+                  value = 10)
     ),
     
 
