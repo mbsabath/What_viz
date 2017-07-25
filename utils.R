@@ -73,6 +73,8 @@ inHullMap <- function(what_out) {
   
 }
 
+
+## Combine the separate graphs into a single graphic
 makeGraphic <- function(what_out) {
   heatmap <- WhatifHeatMap(what_out)
   inHull <- inHullMap(what_out)

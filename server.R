@@ -9,6 +9,9 @@ library(shiny)
 library(WhatIf)
 data("peacecf")
 data("peacef")
+names(peacecf)[8] <- "untype4"
+myData <- rbind(peacecf, peacef)
+myData <- myData[sample(nrow(myData)),]
 
 
 # function for converting percentage nearby value into color
@@ -22,12 +25,12 @@ source("utils.R")
 shinyServer(function(input, output) {
   ##Values <- reactiveValues( x = whatif(data = peacef, cfact = peacecf[1:input$cfacts,]))
   output$distPlot <- renderPlot({
-    x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
+    x <- whatif(data = peacef, cfact = myData[1:input$cfacts,])
     makeGraphic(x)
   })
   
   output$linePlot <- renderPlot({
-    x <- whatif(data = peacef, cfact = peacecf[1:input$cfacts,])
+    x <- whatif(data = peacef, cfact = myData[1:input$cfacts,])
     plot(x)})
 
 })
