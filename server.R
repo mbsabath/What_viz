@@ -5,14 +5,6 @@
 # http://shiny.rstudio.com
 #
 
-library(shiny)
-library(WhatIf)
-data("peacecf")
-data("peacef")
-names(peacecf)[8] <- "untype4"
-myData <- rbind(peacecf, peacef)
-set.seed(1234)
-myData <- myData[sample(nrow(myData)),]
 
 
 # function for converting percentage nearby value into color
@@ -24,14 +16,40 @@ source("utils.R")
 
 
 shinyServer(function(input, output) {
-  ##Values <- reactiveValues( x = whatif(data = peacef, cfact = peacecf[1:input$cfacts,]))
+  
+  output$ui <- renderUI({
+    lapply(1:input$cfacts, function(j) {
+      column(3,
+             lapply(1:length(peacef), function(i){
+               numericInput(paste0(LETTERS[j],"var",i), names(peacef)[i], 
+                            median(peacef[,i], na.rm = T))
+             }))
+    })
+  })
+  
+  counterfacts <- reactive({
+    cfacts <- input$cfacts
+    out <- vector()
+    for (j in 1:length(peacef)) {
+      for (i in 1:cfacts) {
+        out <- c(out, input[[paste0(LETTERS[i],"var",j)]])
+      }
+    }
+   matrix(out, nrow = cfacts)
+    ##names(out) <- names(peacef)
+  })
+  
+  x <- reactive({
+    whatif(data = peacef, cfact = counterfacts())
+  })
+  
+  output$cfact <- renderTable({counterfacts()})
+  
   output$distPlot <- renderPlot({
-    x <- whatif(data = peacef, cfact = myData[1:input$cfacts,])
-    makeGraphic(x)
+    makeGraphic(x())
   })
   
   output$linePlot <- renderPlot({
-    x <- whatif(data = peacef, cfact = myData[1:input$cfacts,])
-    plot(x)})
+    plot(x())})
 
 })

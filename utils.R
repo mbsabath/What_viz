@@ -73,6 +73,17 @@ inHullMap <- function(what_out) {
   
 }
 
+makeCfact <- function(ncfact, nvars) {
+  command <- "out <- c(out,input$"
+  out <- vector()
+  for (i in 1:ncfact) {
+    for (j in 1:nvars) {
+      out <- c(out, input[[paste0(LETTERS[i],"var",j)]])
+      message(out)
+    }
+  }
+  return(matrix(out, nrow = ncfact))
+}
 
 ## Combine the separate graphs into a single graphic
 makeGraphic <- function(what_out) {
