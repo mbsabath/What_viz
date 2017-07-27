@@ -78,6 +78,8 @@ shinyServer(function(input, output) {
   
   output$cfact <- renderTable({counterfacts()})
   
+  output$data <- renderTable({ShinyData()})
+  
   output$distPlot <- renderPlot({
     makeGraphic(x())
   })

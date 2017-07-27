@@ -20,13 +20,14 @@ shinyUI(fluidPage(
     tabPanel("Line Graph", fluidRow(
       plotOutput("linePlot")
     )),
-    tabPanel("Upload Data",fluidRow(
+    tabPanel("Data",fluidRow(
       sidebarPanel(
         fileInput("data",label = "Upload Data", accept = ".RDS"),
         "Upload an R data frame to use as the factual data with whatif. The data
         should be saved using the saveRDS() function. If no data is uploaded, this
         visualization will be based off the peacef data included in the whatif package."
-      )
+      ),
+      tableOutput("data")
     )
              ),
     tabPanel("Counterfactual", fluidRow(

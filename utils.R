@@ -89,6 +89,6 @@ makeCfact <- function(ncfact, nvars) {
 makeGraphic <- function(what_out) {
   heatmap <- WhatifHeatMap(what_out)
   inHull <- inHullMap(what_out)
-  grid.arrange(heatmap, inHull, ncol = 2)
+  grid.arrange(heatmap, inHull, ncol = 2, widths = c(4,1))
   
 }
